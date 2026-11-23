@@ -1,0 +1,77 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+\usepackage{listings}
+\lstloadlanguages{Python}
+\lstset{frameround=fttt}
+
+%SetFonts
+
+%SetFonts
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\headrulewidth}{0.4pt}
+%\footrulewidth 0 pt
+
+
+\fancyhead[L]{CESG~505}
+\fancyhead[C]{}
+\fancyhead[R]{\thepage}
+\fancyfoot[L,C,R]{}
+
+\title{CESG 505 -- Lesson \#12}
+\author{Individual Assignment}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+
+\thispagestyle{fancy}
+
+\section{Given}
+Your are given the following files for download:
+\begin{enumerate}
+\item 
+	{\tt plateelement.py}: this file defines a triangular plate element class\linebreak \verb+PlateElement(X1, X2, X3, params)+, where
+	\verb+X1=[X1x,X1y]+, \verb+X2=[X2x,X2y]+, \linebreak \verb+X3=[X3x,X3y]+ are 2D coordinates of the three corner nodes -- represented as \verb+array()+ objects,
+	and  \verb+params = {'E':...., 'nu':....}+ is a dictionary defining the material parameters $E>0$ and $0\le\nu<0.5$.
+\item 
+        {\tt examples.csv}: a file containing validation example data:
+        {\small
+	\begin{lstlisting}[frame=trBL]
+X1x,X1y,...,X3x,X3y,E,nu,U1x,U1y,...,U3x,U3y,F1x,F1y,...,F3x,F3y
+	\end{lstlisting}
+	}
+\end{enumerate}
+The \verb+PlateElement(X1, X2, X3, params)+ class provides the following methods:
+\begin{description}
+\item[{PlateElement(X1,X2,X3,params)}] the constructor, where \verb+params = {'E':...., 'nu':....}+.
+\item[{setDisp(U1,U2,U3)}] setting nodal displacements 
+        \verb+U1=[U1x,U1y]+,  \verb+U2=[U2x,U2y]+,  \verb+U3=[U3x,U3y]+, 
+        (default is  \verb+U1=[0.0,0.0]+,  \verb+U2=[0.0,0.0]+,  \verb+U3=[0.0,0.0]+ )
+\item[{getF1()}] return the nodal force at node~1 as \verb+numpy.array([F1x,F1y])+
+\item[{getF2()}] return the nodal force at node~1 as \verb+numpy.array([F2x,F2y])+
+\item[{getF3()}] return the nodal force at node~1 as \verb+numpy.array([F3x,F3y])+
+\end{description}
+
+\section{Find}
+Write a three part validation procedure (one class, three methods) based on the \verb+unittest+ library that validates the following.
+\begin{enumerate}
+\item correct force \verb+F1+ for all given elements and displacements.
+\item correct force \verb+F2+ for all given elements and displacements.
+\item correct force \verb+F3+ for all given elements and displacements.
+\end{enumerate}
+Each test needs to run through all examples provided in {\tt examples.csv}.
+\bigskip
+
+\noindent{\bf Remark:} the provided implementation and validation data is designed to pass two and fail one of your tests. Your goal is to design a validation test that identifies which method of my code has a problem, not to fix my code.
+
+
+\end{document}  
